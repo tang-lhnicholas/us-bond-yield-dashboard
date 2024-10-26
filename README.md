@@ -25,7 +25,7 @@ pip install numpy pandas matplotlib requests beautifulsoup4 tkcalendar
 python main_app.py
 ```
 ## Running the code
-To use the app, you only need to run `main_app.py`.
+To use the app, you only need to run `main_app.py`.<br/>
 Note that it will take around 10 seconds for the first run of each day as it needs time to access the latest daily data online. The app should launch quicker after the first run.
 
 ## License
