@@ -28,6 +28,9 @@ python main_app.py
 To use the app, you only need to run `main_app.py`.<br/>
 Note that it will take around 10 seconds for the first run of each day as it needs time to access the latest daily data online. The app should launch quicker after the first run.
 
+## Known issues
+* Line graph is disjoint when displaying bond yield curve data with incomplete information for tenors.
+
 ## License
 Licensed under the [MIT License](https://opensource.org/license/mit).
 
