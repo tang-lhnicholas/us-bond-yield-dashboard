@@ -11,12 +11,13 @@ You also need the following libraries installed:<br/>
 ```
 # Installing dependencies
 pip install numpy pandas matplotlib requests beautifulsoup4 tkcalendar
-
-# Running script
-python main_app.py
 ```
 ## Running the code
 To run the app, you only need to execute `main_app.py`.<br/>
+```
+# Running script
+python main_app.py
+```
 Note that it will take around 10 seconds for the first run of each day as it needs time to access the latest daily data online. The app should launch quicker after the first run.
 
 ## Known issues
