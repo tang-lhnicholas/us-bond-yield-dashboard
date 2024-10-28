@@ -20,8 +20,7 @@ python main_app.py
 ```
 Note that it will take around 10 seconds for the first run of each day as it needs time to access the latest daily data online. The app should launch quicker after the first run.
 
-## App demo
-https://github.com/user-attachments/assets/afd15c89-863e-4540-885c-14f8d5fbaa1b
+## 💡  App demo
 ![app_demo](https://github.com/user-attachments/assets/9f9ecd17-40e0-48b5-a253-6e7f5f302963)
 
 ## 🚩  Known issues
