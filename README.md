@@ -23,10 +23,6 @@ Note that it will take around 10 seconds for the first run of each day as it nee
 ## 💡  App demo
 ![app_demo](https://github.com/user-attachments/assets/9f9ecd17-40e0-48b5-a253-6e7f5f302963)
 
-## 🚩  Known issues
-* Line graph is disjoint when displaying bond yield curve data with incomplete information for tenors.
-
-
 ## ⚖️  License
 Licensed under the [MIT License](https://opensource.org/license/mit).
 
