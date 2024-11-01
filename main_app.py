@@ -103,7 +103,14 @@ def start_graph_today():
     date = datetime.today()
     count = len(df)-1
     x_pos = [1, 2.5, 4, 6, 8, 11, 14, 17, 20, 24, 28, 32]
-    y = df.loc[count, '1 Mo':'30 Yr'].to_list()
+
+    y_raw = df.loc[count, '1 Mo':'30 Yr'].to_list()
+    
+    y = np.array(y_raw, dtype=np.double) # Data cleaning to be improved
+    nans, valid = np.isnan(y), np.logical_not(np.isnan(y))
+    y[nans] = np.interp(np.flatnonzero(nans), np.flatnonzero(valid), y[valid])
+    y[np.isnan(y)] = np.nan #
+    
     ax.plot(x_pos, y, '.-', markersize=2, linewidth=1)
     
     plot_presets(date)
@@ -116,42 +123,49 @@ def start_graph_today():
 def update():
     global count, end_count, ani, ax, date, x_pos
     ax.cla()
+    
     startdate = l1['text']
-    while startdate not in df.iloc[:, 0].values:
-        startdate = (datetime.strptime(startdate, '%B %d, %Y') + timedelta(days=1)).strftime('%m/%d/%Y')
+    while datetime.strptime(startdate, '%B %d, %Y').strftime('%m/%d/%Y') not in df.iloc[:, 0].values:
+        startdate = (datetime.strptime(startdate, '%B %d, %Y') + timedelta(days=1)).strftime('%B %d, %Y')
 
     enddate = l2['text']
-    if datetime.strptime(enddate, '%B %d, %Y') >= datetime.strptime(enddate, '%B %d, %Y'):
-        while enddate not in df.iloc[:, 0].values:
-            enddate = (datetime.strptime(enddate, '%B %d, %Y') - timedelta(days=1)).strftime('%m/%d/%Y')
-        
-        count = np.where(df['Date'] == startdate)[0][0]
-        
-        end_count = np.where(df['Date'] == enddate)[0][0]
+    while datetime.strptime(enddate, '%B %d, %Y').strftime('%m/%d/%Y') not in df.iloc[:, 0].values:
+        enddate = (datetime.strptime(enddate, '%B %d, %Y') - timedelta(days=1)).strftime('%B %d, %Y')
 
-        def update_frame(frame):
-            global count, end_count
+    count = np.where(df['Date'] == datetime.strptime(startdate, '%B %d, %Y').strftime('%m/%d/%Y'))[0][0]
     
-            ax.clear()
-            x_pos = [1, 2.5, 4, 6, 8, 11, 14, 17, 20, 24, 28, 32]
-            y = df.loc[count, '1 Mo':'30 Yr'].to_list()
-    
-            date_string = df.loc[count, 'Date']
-            date = datetime.strptime(date_string, '%m/%d/%Y')
-    
-            ax.plot(x_pos, y, '.-', markersize=2, linewidth=1)
-            plot_presets(date)
-    
-            count += 1
-    
-            if count > end_count:
-                 ani.event_source.stop()
-            
-        if ani is not None:
-            ani.event_source.stop()
+    end_count = np.where(df['Date'] == datetime.strptime(enddate, '%B %d, %Y').strftime('%m/%d/%Y'))[0][0]
+
+    def update_frame(frame):
+        global count, end_count
+
+        ax.clear()
+        x_pos = [1, 2.5, 4, 6, 8, 11, 14, 17, 20, 24, 28, 32]
         
-        ani = FuncAnimation(fig, update_frame, frames=len(df) - count, interval=10)
-        canvas.draw()
+        y_raw = df.loc[count, '1 Mo':'30 Yr'].to_list()
+        
+        y = np.array(y_raw, dtype=np.double) # Data cleaning to be improved
+        nans, valid = np.isnan(y), np.logical_not(np.isnan(y))
+        y[nans] = np.interp(np.flatnonzero(nans), np.flatnonzero(valid), y[valid])
+        y[np.isnan(y)] = np.nan #
+
+        ax.plot(x_pos, y, '.-', markersize=2, linewidth=1)
+
+        date_string = df.loc[count, 'Date']
+        date = datetime.strptime(date_string, '%m/%d/%Y')
+        
+        plot_presets(date)
+
+        count += 1
+
+        if count > end_count:
+             ani.event_source.stop()
+        
+    if ani is not None:
+        ani.event_source.stop()
+    
+    ani = FuncAnimation(fig, update_frame, frames=len(df) - count, interval=10)
+    canvas.draw()
             
 def stop():
     ani.pause()
@@ -164,20 +178,30 @@ def compare():
     ax.cla()
     startdate = l1['text']
     while startdate not in df.iloc[:, 0].values:
-        startdate = (datetime.strptime(startdate, '%B %d, %Y') + timedelta(days=1)).strftime('%m/%d/%Y')
+        startdate = (datetime.strptime(startdate, '%B %d, %Y') + timedelta(days=1)).strftime('%B %d, %Y')
 
     enddate = l2['text']
-    if datetime.strptime(enddate, '%B %d, %Y') >= datetime.strptime(enddate, '%B %d, %Y'):
+    if datetime.strptime(enddate, '%B %d, %Y') >= datetime.strptime(startdate, '%B %d, %Y'):
         while enddate not in df.iloc[:, 0].values:
-            enddate = (datetime.strptime(enddate, '%B %d, %Y') - timedelta(days=1)).strftime('%m/%d/%Y')
-            
-        count = np.where(df['Date'] == startdate)[0][0]
-        
-        end_count = np.where(df['Date'] == enddate)[0][0]
+            enddate = (datetime.strptime(enddate, '%B %d, %Y') - timedelta(days=1)).strftime('%B %d, %Y')
+
     ax.cla()
     x_pos = [1, 2.5, 4, 6, 8, 11, 14, 17, 20, 24, 28, 32]
-    y_start = df.loc[count, '1 Mo':'30 Yr'].to_list()
-    y_end =  df.loc[end_count, '1 Mo':'30 Yr'].to_list()
+    
+    y_start_raw = df.loc[count, '1 Mo':'30 Yr'].to_list()
+    
+    y_start = np.array(y_start_raw, dtype=np.double) # Data cleaning to be improved
+    nans, valid = np.isnan(y_start), np.logical_not(np.isnan(y_start))
+    y_start[nans] = np.interp(np.flatnonzero(nans), np.flatnonzero(valid), y_start[valid])
+    y_start[np.isnan(y_start)] = np.nan #
+
+    y_end_raw = df.loc[count, '1 Mo':'30 Yr'].to_list()
+    
+    y_end = np.array(y_end_raw, dtype=np.double) # Data cleaning to be improved
+    nans, valid = np.isnan(y_end), np.logical_not(np.isnan(y_end))
+    y_end[nans] = np.interp(np.flatnonzero(nans), np.flatnonzero(valid), y_end[valid])
+    y_end[np.isnan(y_end)] = np.nan #
+
     date_string = df.loc[count, 'Date']
     date = datetime.strptime(date_string, '%m/%d/%Y')
     ax.plot(x_pos, y_start, '.-', label=l1['text'], markersize=2, linewidth=1)
