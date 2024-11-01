@@ -2,7 +2,7 @@
 
 ## ✏️  About
 
-This app produces an animation of the US Bond Yield curve over a certain period, taking data from the [US Government Treausry website](https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve).
+I made a Tkinter app that generates an animation of the US Bond Yield curve over a specific period, taking data from the [US Government Treausry website](https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve).
 
 ## 🚀  Preparation
 You need Python 3.0 or greater to run the script.
