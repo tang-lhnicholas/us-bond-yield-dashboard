@@ -15,7 +15,7 @@ pip install numpy pandas matplotlib requests beautifulsoup4 tkcalendar
 ```
 
 ## 💻  Running the code
-To run the app, you only need to execute `main_app.py`:<br/>
+To run the app, execute `main_app.py`:<br/>
 ```
 # To run the script
 python main_app.py
