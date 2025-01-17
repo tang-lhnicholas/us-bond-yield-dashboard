@@ -1,5 +1,3 @@
-
-https://github.com/user-attachments/assets/74c16873-5b20-4d3e-8f72-1b9efb669d4f
 # US Bond Yield Curve Visualisation App
 
 ## ✏️  About
