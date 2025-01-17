@@ -1,3 +1,5 @@
+
+https://github.com/user-attachments/assets/74c16873-5b20-4d3e-8f72-1b9efb669d4f
 # US Bond Yield Curve Visualisation App
 
 ## ✏️  About
@@ -24,7 +26,11 @@ Note that it will take around 10 seconds for the first run of each day as it nee
 <br/>
 
 ## 💡  App demo
-![app_demo](https://github.com/user-attachments/assets/9f9ecd17-40e0-48b5-a253-6e7f5f302963)
+![app demo](https://github.com/user-attachments/assets/5d41dd3d-c59d-4c62-bfd0-d2affd4ef15c)
+
+
+
+
 <br/>
 
 ## ⚖️  License
