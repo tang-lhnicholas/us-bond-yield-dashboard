@@ -24,7 +24,7 @@ Note that it will take around 10 seconds for the first run of each day as it nee
 <br/>
 
 ## 💡  App demo
-![app demo](https://github.com/user-attachments/assets/5d41dd3d-c59d-4c62-bfd0-d2affd4ef15c)
+![app demo](https://github.com/user-attachments/assets/5d30b980-8b15-4b4f-a94e-9d910b6fe281)
 
 
 
