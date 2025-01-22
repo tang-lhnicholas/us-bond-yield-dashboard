@@ -1,8 +1,8 @@
-# US Bond Yield Curve Visualisation App
+# US Bond Yield Curve Visualisation Dashboard
 
 ## ✏️  About
 
-I made a Tkinter app that generates an animation of the US Bond Yield curve over a specific period, taking data from the [US Government Treausry website](https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve).
+I made a Tkinter dashboard that generates an animation of the US Bond Yield curve over a specific period, taking data from the [US Government Treausry website](https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve).
 <br/>
 
 ## 🚀  Preparation
@@ -15,7 +15,7 @@ pip install numpy pandas matplotlib requests beautifulsoup4 tkcalendar
 ```
 
 ## 💻  Running the code
-To run the app, execute `main_app.py`:<br/>
+To run the program, execute `main_app.py`:<br/>
 ```
 # To run the script
 python main_app.py
