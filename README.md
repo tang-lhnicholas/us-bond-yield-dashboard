@@ -18,7 +18,7 @@ pip install numpy pandas matplotlib requests beautifulsoup4 tkcalendar
 To run the program, execute `main_app.py`:<br/>
 ```
 # To run the script
-python main_.py
+python main_app.py
 ```
 Note that it will take around 10 seconds for the first run of each day as it needs time to access the latest daily data online. The dashboard should launch quicker after the first run.
 <br/>
