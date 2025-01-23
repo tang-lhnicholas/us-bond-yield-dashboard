@@ -1,4 +1,4 @@
-# US Bond Yield Curve Visualisation Dashboard
+# US Bond Yield Curve Dashboard
 
 ## ✏️  About
 
